@@ -6,10 +6,11 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // Start command to show the inline button
 bot.start(async (ctx) => {
+    // console.log(ctx.from);
     const webAppButton = {
         text: 'TapMe',
         web_app: {
-            url: 'https://quiz-app-lemon.netlify.app/'
+            url: `${process.env.GAME_URL}/${ctx.from.id}/${ctx.from.first_name}`
         }
         };
     
