@@ -11,7 +11,7 @@ bot.start(async (ctx) => {
     const webAppButton = {
         text: 'TapMe',
         web_app: {
-            url: `${process.env.GAME_URL}/${ctx.from.id}/${ctx.from.first_name}`
+            url: `https://playtapme.netlify.app/${ctx.from.id}/${ctx.from.first_name}`
         }
         };
     
