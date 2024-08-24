@@ -6,6 +6,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // Start command to show the inline button
 bot.start(async (ctx) => {
+    dotenv.config();
     console.log(`${process.env.GAME_URL}/${ctx.from.id}/${ctx.from.first_name}`);
     const webAppButton = {
         text: 'TapMe',
