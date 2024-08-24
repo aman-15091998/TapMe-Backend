@@ -5,7 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 // Initialize Supabase client
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 
-// GraphQL schema definitions
+// User schema definitions
 const typeDefs = `
   type User {
   id: String!
@@ -36,10 +36,10 @@ const resolvers = {
       const { data } = await supabase.from('users').select('*');
       return data; 
     },
-    user: async (_, { id, username }) => {
+    user: async (_, { id, username }) => {  //for getting the user
       let { data: user } = await supabase.from('users').select('*').eq('id', String(id)).single();
       
-      // If the user is not found, create a new user
+      // If the user is not found, creating a new user
       if (!user) {
         const newUser = {
           id,
@@ -57,9 +57,9 @@ const resolvers = {
         user = createdUser; 
         
       }
-      if(user.last_seen!=0){
-        let secondsPassed=Math.round(( Date.now() - user.last_seen)/1000);
-        let updatedPower=Math.min(user.power_capacity, user.power + secondsPassed);
+      if(user.last_seen!=0){ //if the user is old one then updating the power using last_seen
+        let secondsPassed=Math.round(( Date.now() - user.last_seen)/1000);  
+        let updatedPower=Math.min(user.power_capacity, user.power + secondsPassed);   //power, total seconds passed idle
         await supabase.from('users').update({ power:updatedPower, last_seen: Date.now() }).eq('id', user.id).single();
         let { data: updatedUser } = await supabase.from('users').select('*').eq('id', id).single();
         user=updatedUser;
@@ -68,7 +68,7 @@ const resolvers = {
     },
   },
   Mutation: {
-    updateUser: async (_, { id,  balance, power, level, level_target}) => {
+    updateUser: async (_, { id,  balance, power, level, level_target}) => { //for updating the user
       const { data } = await supabase.from('users').update({ balance, power, level, level_target, last_seen: Date.now() }).eq('id', id).single();
       return data;
     },

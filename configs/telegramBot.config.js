@@ -11,7 +11,7 @@ bot.start(async (ctx) => {
     const webAppButton = {
         text: 'TapMe',
         web_app: {
-            url: `https://playtapme.netlify.app/${ctx.from.id}/${ctx.from.first_name}`
+            url: `https://playtapme.netlify.app/${ctx.from.id}/${ctx.from.first_name}`  // app url with user id and name
         }
         };
     
@@ -22,7 +22,7 @@ bot.start(async (ctx) => {
         ]
         };
         
-        // Send the message with the web app button
+        // Sending the message with the web app button
         ctx.reply('Click the button below to open the web app:', {
         reply_markup: replyMarkup
         });
