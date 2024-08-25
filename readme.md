@@ -14,11 +14,11 @@
    ```
 4. Move inside the folder
 5. Create .env file and add variables
-6. Update the [frontend](https://github.com/aman-15091998/TapMe-Frontend.git) url/localhost with yours after setting it up.
+6. Update the [frontend](https://github.com/aman-15091998/TapMe-Frontend.git) url with http://localhost:3000/ in the telegramBot.config.js file.
 
 ```bash
 web_app: {
-            url: `Your_URL_HERE/${ctx.from.id}/${ctx.from.first_name}`  // app url with user id and name
+            url: `COPY_IT_HERE/${ctx.from.id}/${ctx.from.first_name}`  // app url with user id and name
         }
 ```
 
