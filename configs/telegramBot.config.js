@@ -7,11 +7,11 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 // Start command to show the inline button
 bot.start(async (ctx) => {
     dotenv.config();
-    console.log(`https://playtapme.netlify.app/${ctx.from.id}/${ctx.from.first_name}`);
+    // console.log(`https://playtapme.netlify.app/${ctx.from.id}/${ctx.from.first_name}`);
     const webAppButton = {
         text: 'TapMe',
         web_app: {
-            url: `https://playtapme.netlify.app/${ctx.from.id}/${ctx.from.first_name}`  // app url with user id and name
+            url: `http://localhost:3000/${ctx.from.id}/${ctx.from.first_name}`  // app url with user id and name
         }
         };
     
